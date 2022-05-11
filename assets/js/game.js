@@ -67,16 +67,24 @@ var fight = function(enemyName) {
     } //end of while loop
         // if no (false), ask question again by running fight() again
 }; //end of fight function     
-  
-for(var i = 0; i < enemyNames.length; i++) {
-    //does this next line get its own fight() function (see lines 72-74)
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    fight(enemyNames[i]);           
-   // console.log(enemyNames[i]);
-    //console.log(i);
-   // console.log(enemyNames[i] + " is at " + i + "index");
-}
 
-// for(var i = 0; i < enemyNames.length; i++)  {
-  //  fight(enemyNames[i]); }
+//fight enemy robots by looping over them and fighting them one at a time
+for(var i = 0; i < enemyNames.length; i++) {
+    if (playerHealth > 0) {
+      //let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
+      window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
+      //pick new enemy to fight based on the index of the enemyNames array
+      var pickedEnemyName = enemyNames[i];
+      //reset enemyHealth before starting new fight
+      enemyHealth = 50;
+      //use debugger to pause script from running and check what's going on at that moment in the code
+      // debugger;
+      
+      //pass the pickedEnemy variable's value into the fight function, where it will assume the value of the enemyName parameter
+      fight(pickedEnemyName); 
+    }
+    else {
+      window.alert("You have lost your robot in battle! Game Over!");
+      break;
+    }
+}
